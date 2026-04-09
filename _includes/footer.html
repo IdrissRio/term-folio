@@ -1,0 +1,29 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-prompt">
+      <span style="color: var(--cyan);">{{ site.username }}</span><span style="color: var(--text-muted);">@</span> <span style="color: var(--blue);">~</span> <span style="color: var(--green);">$</span> <span style="color: var(--text-muted);">cat footer.txt</span>
+    </div>
+
+    <div class="footer-links">
+      <a href="mailto:{{ site.email }}"><svg style="width:1em;height:1em;vertical-align:-0.1em;fill:currentColor;" viewBox="0 0 16 16"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0114.25 14H1.75A1.75 1.75 0 010 12.25v-8.5C0 2.784.784 2 1.75 2zM1.5 4.607v7.643c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25V4.607l-5.426 3.899a1.75 1.75 0 01-2.148 0L1.5 4.607zM14.25 3.5H1.75a.25.25 0 00-.177.073L8 8.391l6.427-4.818A.25.25 0 0014.25 3.5z"/></svg> email</a>
+      <a href="{{ site.github_url }}" target="_blank"><svg style="width:1em;height:1em;vertical-align:-0.1em;fill:currentColor;" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> github</a>
+      {% if site.scholar_url %}<a href="{{ site.scholar_url }}" target="_blank">◉ scholar</a>{% endif %}
+      {% if site.linkedin_url %}<a href="{{ site.linkedin_url }}" target="_blank">◆ linkedin</a>{% endif %}
+    </div>
+
+    <div class="footer-copy">
+      © {{ "now" | date: "%Y" }} {{ site.author }} · Built with <a href="https://github.com/IdrissRio/term-folio" target="_blank">term-folio</a> & Jekyll
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next">›</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="photo">
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/terminal.js"></script>

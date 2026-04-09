@@ -1,0 +1,82 @@
+/* ============================================
+   ANIMATIONS — Typing, Cursor, Scanlines
+   ============================================ */
+
+/* Typing animation container */
+.typing-text {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.6em solid var(--green);
+  animation: typing-cursor 1s step-end infinite;
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* Command typing effect */
+.cmd {
+  min-height: 1em;
+  display: inline;
+}
+
+.cmd.typing-active::after {
+  content: '▊';
+  color: var(--green);
+  animation: typing-cursor 0.7s step-end infinite;
+  margin-left: 1px;
+}
+
+.cmd.typing-done::after {
+  content: '';
+}
+
+@keyframes typing-cursor {
+  0%, 100% { border-color: var(--green); }
+  50% { border-color: transparent; }
+}
+
+/* Fade in up animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered children animation */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+@for $i from 1 through 20 {
+  .stagger-children > *:nth-child(#{$i}) {
+    animation-delay: #{$i * 0.05}s;
+  }
+}
+
+/* Glow pulse for hero elements */
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 5px rgba(57, 211, 83, 0.3); }
+  50% { text-shadow: 0 0 15px rgba(57, 211, 83, 0.6), 0 0 30px rgba(57, 211, 83, 0.2); }
+}
+
+/* Subtle flicker for terminal authenticity */
+.terminal-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  100% { opacity: 0.98; }
+}

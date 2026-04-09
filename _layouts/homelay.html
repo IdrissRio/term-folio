@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<div class="terminal">
+  <div class="terminal-header">
+    <div class="terminal-dots">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="terminal-title">{{ site.username }}@</div>
+  </div>
+  <nav class="terminal-tab-bar" aria-label="Site navigation">
+    <a class="terminal-content-tab active" href="{{ site.baseurl }}/">~/home</a>
+    {% for navpage in site.nav_pages %}
+      {% assign navname = navpage.name | append: ".md" %}
+      {% assign pages = site.pages | where: "name", navname %}
+      {% for p in pages %}
+    <a class="terminal-content-tab" href="{{ site.baseurl }}/{{ navpage.name }}/">~/{{ p.title | downcase }}</a>
+      {% endfor %}
+    {% endfor %}
+  </nav>
+  <div class="terminal-tab-bar terminal-subtab-bar" role="tablist" aria-label="Content sections">
+    <button class="terminal-content-tab active" data-tab="about" role="tab" aria-selected="true" aria-controls="tab-about">about.md</button>
+    <button class="terminal-content-tab" data-tab="news" role="tab" aria-selected="false" aria-controls="tab-news">news.log</button>
+    <button class="terminal-content-tab" data-tab="students" role="tab" aria-selected="false" aria-controls="tab-students">students/</button>
+    <button class="terminal-content-tab" data-tab="personal" role="tab" aria-selected="false" aria-controls="tab-personal">personal.md</button>
+  </div>
+  <div class="terminal-body">
+    {{ content }}
+  </div>
+</div>

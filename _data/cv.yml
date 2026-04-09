@@ -1,0 +1,41 @@
+# CV data — rendered on the curriculum page
+# Edit these sections to match your background
+
+education:
+  - degree: "PhD in Computer Science"
+    institution: "University Name"
+    start: "2019"
+    end: "2023"
+    grade: "With distinction"
+  - degree: "B.S. Computer Science"
+    institution: "University Name"
+    start: "2015"
+    end: "2019"
+
+experience:
+  compiler_related:
+    - project: "Project Name"
+      title: "Your role"
+      start: "2023"
+      end: ""
+      link: "https://github.com/yourusername/project"
+      description: "Brief description of the project."
+
+certifications_awards:
+  - title: "Award Name"
+    date: "2023"
+    award: "Best Paper Award"
+    description: "Conference or context."
+
+work_experience:
+  - title: "Software Engineer"
+    company: "Company Name"
+    start: "2023"
+    end: ""
+    description: "What you do there."
+
+publications:
+  - title: "Your Paper Title"
+    authors: "Your Name, Co-Author"
+    date: "2023"
+    event: "Conference Name 2023"

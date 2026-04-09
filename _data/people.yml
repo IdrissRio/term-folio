@@ -1,0 +1,12 @@
+# Supervised students / collaborators
+# Used on the "students" tab of the homepage
+
+- name: Student Name
+  location: University Name
+  degree: "Master Thesis supervisor, <a href='#'>Thesis Title</a>"
+  year: 2024
+
+- name: Another Student
+  location: University Name
+  degree: "Project supervisor, <a href='#'>Project Title</a>"
+  year: 2023

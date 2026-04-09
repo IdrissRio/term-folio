@@ -1,0 +1,119 @@
+# ╔══════════════════════════════════════════════════╗
+# ║  term-folio — Terminal-themed Jekyll portfolio   ║
+# ║  https://github.com/IdrissRio/term-folio         ║
+# ╚══════════════════════════════════════════════════╝
+
+# ── Site settings ──────────────────────────────────
+title: Your Name
+email: you@example.com
+description: >-
+  Your Name — Your role at Your Company.
+  A short SEO-friendly description of who you are and what you do.
+baseurl: ""
+url: "https://yourusername.github.io"
+
+# ── Terminal identity ─────────────────────────────
+# Shown as "username@" in the terminal header and footer
+username: yourusername
+
+# ── Social URLs (used in footer and about page) ──
+github_url: https://github.com/yourusername
+scholar_url: https://scholar.google.com/citations?user=XXXXX
+linkedin_url: https://www.linkedin.com/in/yourusername
+
+# ── Author (used by jekyll-seo-tag) ───────────────
+author:
+  name: Your Name
+  url: https://yourusername.github.io
+  twitter: yourusername
+
+# ── Social links (used by jekyll-seo-tag) ─────────
+twitter:
+  username: yourusername
+  card: summary
+
+social:
+  name: Your Name
+  links:
+    - https://github.com/yourusername
+    - https://www.linkedin.com/in/yourusername
+    # - https://scholar.google.com/citations?user=XXXXX
+
+# ── Analytics (uncomment and add your ID) ─────────
+# google_analytics_4: G-XXXXXXXXXX
+
+# ── Footer info ───────────────────────────────────
+affiliation: >
+    Your Name<br/>
+    Your Title at Your Company<br/>
+    <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+
+# ── Navigation ────────────────────────────────────
+# Pages shown as tabs in the terminal
+nav_pages:
+  - name: publications
+  - name: research
+  - name: teaching
+  - name: curriculum
+
+include:
+  - .htaccess
+  - _pages
+
+# ── Markdown ──────────────────────────────────────
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+  parse_block_html: true
+
+# ── Plugins ───────────────────────────────────────
+plugins:
+  - jekyll/scholar
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# ── Jekyll Scholar (bibliography) ─────────────────
+scholar:
+  last_name: Your
+  first_name: [Name]
+
+  style: citesty
+  locale: en
+
+  source: /assets/
+  bibliography: ref.bib
+  bibliography_template: bibtemplate
+  sort_by: year, month
+  order: descending
+
+  replace_strings: true
+  join_strings: true
+
+  details_dir: bibliography
+  details_layout: bibtex.html
+  details_link: Details
+
+  query: "@*"
+
+  bibliography_list_attributes:
+    reversed: "reversed"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - tags
+  - Rakefile
+  - README.md
+  - LICENSE

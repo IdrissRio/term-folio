@@ -1,0 +1,134 @@
+/* ============================================
+   RESPONSIVE — Mobile Breakpoints
+   ============================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-base: 13px;
+  }
+
+  .site-wrapper {
+    padding: 0 1rem;
+  }
+
+  /* Nav responsive */
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-tabs-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0;
+    z-index: 99;
+
+    &.open {
+      display: flex;
+    }
+  }
+
+  .nav-inner {
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .nav-tab {
+    padding: 0.75rem 1.5rem;
+    border-bottom: none;
+    border-left: 2px solid transparent;
+
+    &.active {
+      border-bottom: none;
+      border-left-color: var(--green);
+    }
+  }
+
+  /* ASCII art scaling */
+  .ascii-art {
+    font-size: 0.4rem;
+    text-shadow: none;
+  }
+
+  /* Home layout */
+  .home-hero {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-photo img {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Terminal body padding */
+  .terminal-body {
+    padding: 1rem;
+  }
+
+  /* File listing stacking */
+  .file-listing .file-entry {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .file-listing .file-perms,
+  .file-listing .file-user {
+    display: none;
+  }
+
+  /* Skill bars */
+  .skill-bar .skill-name {
+    min-width: 70px;
+    font-size: var(--font-size-sm);
+  }
+
+  /* Log entries */
+  .log-entry {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  /* Image gallery */
+  .image-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .ascii-art {
+    font-size: 0.32rem;
+  }
+
+  .image-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 0.5rem;
+
+    img {
+      height: 70px;
+    }
+  }
+
+  .tree .tree-item {
+    flex-direction: column;
+    gap: 0.1rem;
+    padding-left: 1rem;
+  }
+
+    .tree .tree-branch {
+    display: none;
+  }
+
+  /* Content tabs on mobile */
+  .terminal-content-tab {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

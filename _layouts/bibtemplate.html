@@ -1,0 +1,93 @@
+---
+---
+
+
+<div class="text-justify">{{reference}}</div>
+
+{% assign bibtest = false %}
+{% if entry.file %}
+{% assign bibfile = "/papers/" | append: entry.file %}
+{% for file in site.static_files %}
+  {% if file.path contains bibfile %}
+   {% assign bibtest = true %}
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+{% if bibtest %}
+<a href="{{ site.url }}{{ site.baseurl }}/papers/{{ entry.file }}" target="_blank"><span class="tag tag-blue">PDF</span></a>
+{% endif %}
+
+{% if entry.doi %}
+{% if entry.type == 'unpublished' %}
+<a href="{{ entry.doi | prepend: 'https://arxiv.org/abs/' }}" target="_blank"><span class="tag tag-purple">ARXIV</span></a>
+{% else %}
+<a href="{{ entry.doi | prepend: 'http://doi.org/' }}" target="_blank"><span class="tag tag-blue">DOI</span></a>
+{% endif %}
+{% endif %}
+
+{% if entry.type == 'unpublished' or entry.type == 'article' or  entry.type == 'thesis' or entry.type == 'inproceedings' or entry.type == 'report' %}
+<span class="tag tag-red" style="cursor:pointer;" onclick="toggleBibtex{{entry.key}}()">BIB</span>
+{% endif %}
+
+{% if entry.abstract %}
+<span class="tag tag-amber" style="cursor:pointer;" onclick="toggleAbstract{{entry.key}}()">ABSTRACT</span>
+{% endif %}
+
+{% if entry.poster %}
+<a href="{{ site.url }}{{ site.baseurl }}/papers/{{ entry.poster }}" target="_blank"><span class="tag tag-blue">POSTER</span></a>
+{% endif %}
+
+{% if entry.award %}
+<span class="tag tag-amber">🏆 {{ entry.award }}</span>
+{% endif %}
+
+{% if entry.award2 %}
+<span class="tag tag-amber">🏆 {{ entry.award2 }}</span>
+{% endif %}
+
+{% if entry.youtube %}
+<a href="{{ entry.youtube}}" target="_blank"><span class="tag tag-purple">VIDEO</span></a>
+{% endif %}
+
+{% if entry.slidesonline %}
+<a href="{{ entry.slidesonline }}" target="_blank"><span class="tag tag-blue">SLIDES</span></a>
+{% endif %}
+
+{% if entry.slide %}
+<a href="{{ site.url }}{{ site.baseurl }}/papers/{{ entry.slide }}" target="_blank"><span class="tag tag-blue">SLIDES</span></a>
+{% endif %}
+
+{% if entry.abstract %}
+<div id="a{{entry.key}}" style="display: none; margin-top: 0.5rem;">
+<pre style="font-size: 0.85rem;">{{ entry.bibtex | remove: "entry.abstract" }}</pre>
+</div>
+{% else %}
+<div id="a{{entry.key}}" style="display: none; margin-top: 0.5rem;">
+<pre style="font-size: 0.85rem;">{{ entry.bibtex }}</pre>
+</div>
+{% endif %}
+
+<div id="b{{entry.key}}" style="display: none; margin-top: 0.5rem;">
+<pre style="font-size: 0.85rem;">{{entry.abstract}}</pre>
+</div>
+
+<script>
+
+function toggleBibtex{{entry.key}}(parameter) {
+    var x= document.getElementById('a{{entry.key}}');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+function toggleAbstract{{entry.key}}(parameter) {
+    var x= document.getElementById('b{{entry.key}}');
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>

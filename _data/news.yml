@@ -1,0 +1,17 @@
+# News entries — shown on the homepage news.log tab
+# Supports optional images for a lightbox gallery
+#
+# - date: Month YYYY
+#   headline: "Description of what happened"
+#   images:
+#     - news/photo1.jpg
+#     - news/photo2.jpg
+
+- date: January 2025
+  headline: "🚀 Launched my new terminal-themed website using <a href='https://github.com/IdrissRio/term-folio'>term-folio</a>!"
+
+- date: September 2024
+  headline: "📄 Published a paper at <a href='#'>Conference Name 2024</a>."
+
+- date: June 2024
+  headline: "🎓 Graduated with a PhD in Computer Science!"

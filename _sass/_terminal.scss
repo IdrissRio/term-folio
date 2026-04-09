@@ -1,0 +1,580 @@
+/* ============================================
+   TERMINAL — Window Chrome, Prompts, Effects
+   ============================================ */
+
+/* Terminal window wrapper */
+.terminal {
+  background: var(--bg-terminal);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.terminal-header {
+  background: var(--bg-secondary);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  user-select: none;
+}
+
+/* iTerm2-style tab bar — sits between header and body */
+.terminal-tab-bar {
+  display: flex;
+  background: var(--bg-tertiary, #161b22);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.terminal-subtab-bar {
+  background: var(--bg-secondary);
+}
+
+.terminal-content-tab {
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  padding: 0.45rem 1.25rem;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.15s, background 0.15s;
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  &.active {
+    color: var(--text-primary);
+    background: var(--bg-primary);
+
+    // Green underline indicator
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--green);
+    }
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+
+  span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+
+    &:nth-child(1) { background: var(--red); }
+    &:nth-child(2) { background: var(--amber); }
+    &:nth-child(3) { background: var(--green); }
+  }
+}
+
+.terminal-title {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  flex: 1;
+  text-align: center;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  min-height: 100px;
+}
+
+/* Command prompt styling */
+.prompt {
+  color: var(--green);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+
+  .user {
+    color: var(--cyan);
+  }
+
+  .at {
+    color: var(--text-muted);
+  }
+
+  .host {
+    color: var(--purple);
+  }
+
+  .path {
+    color: var(--blue);
+  }
+
+  .dollar {
+    color: var(--green);
+  }
+
+  .cmd {
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+}
+
+/* Content tab panels */
+.content-tab-panel {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+/* Section prompt — used as headers */
+.section-prompt {
+  font-size: var(--font-size-lg);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+
+  p {
+    margin: 0;
+    display: inline;
+  }
+
+  .dollar {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .cmd {
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+}
+
+/* Command output */
+.cmd-output {
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+
+  p {
+    margin: 0;
+  }
+
+  .output-line {
+    color: var(--text-secondary);
+    display: block;
+    padding: 0.15rem 0;
+
+    &::before {
+      content: '>';
+      color: var(--text-muted);
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+/* Blinking cursor */
+.cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  background: var(--green);
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ASCII art container */
+.ascii-art {
+  color: var(--green);
+  font-size: 0.55rem;
+  line-height: 1.15;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  white-space: pre;
+  overflow-x: auto;
+  text-shadow: var(--glow-green);
+  user-select: none;
+
+  @media (min-width: 600px) {
+    font-size: 0.7rem;
+  }
+
+  @media (min-width: 800px) {
+    font-size: 0.85rem;
+  }
+}
+
+/* ASCII map */
+.ascii-map {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.3;
+  color: var(--text-muted);
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  white-space: pre;
+
+  .map-land {
+    color: var(--border);
+  }
+
+  .map-pin {
+    font-size: 0.85rem;
+  }
+
+  .map-pin-it { color: var(--green); }
+  .map-pin-se { color: var(--blue); }
+  .map-pin-dk { color: var(--red); }
+
+  .map-label {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .map-dim {
+    color: var(--text-muted);
+    font-size: 0.65rem;
+  }
+
+  @media (min-width: 600px) {
+    font-size: 0.8rem;
+
+    .map-dim { font-size: 0.7rem; }
+  }
+}
+
+/* Leaflet map overrides for terminal theme */
+#places-map {
+  background: var(--bg-primary);
+}
+
+.terminal-tooltip {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+  padding: 6px 10px !important;
+  color: var(--text-primary) !important;
+
+  &::before {
+    border-top-color: var(--border) !important;
+  }
+}
+
+.leaflet-tooltip-top .terminal-tooltip::before,
+.terminal-tooltip.leaflet-tooltip-top::before {
+  border-top-color: var(--border) !important;
+}
+
+.map-marker-terminal {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Tree-style listing */
+.tree {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--border);
+  margin-left: 0.5rem;
+
+  .tree-item {
+    padding: 0.6rem 0 0.6rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+    position: relative;
+    margin: 0;
+    line-height: 1.6;
+
+    // Horizontal branch connector — aligned to first line of text
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 1.15em;
+      width: 1.25rem;
+      height: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    // Last item: hide the vertical line below the connector
+    &:last-child {
+      // Paint over the vertical border below the connector
+      &::after {
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: 1.15em;
+        bottom: 0;
+        width: 2px;
+        background: var(--bg-primary);
+      }
+    }
+
+    &:hover {
+      background: var(--bg-secondary);
+      border-radius: 0 4px 4px 0;
+    }
+
+    p {
+      margin: 0;
+      display: contents;
+    }
+  }
+
+  .tree-branch {
+    display: none;
+  }
+
+  .tree-date {
+    color: var(--amber);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: var(--font-size-sm);
+    min-width: 150px;
+  }
+
+  .tree-duration {
+    display: inline-block;
+    background: rgba(57, 211, 83, 0.1);
+    border: 1px solid var(--green-dim);
+    color: var(--green);
+    padding: 0 0.4rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1.6;
+  }
+
+  .tree-label {
+    color: var(--text-secondary);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tree-highlight {
+    color: var(--green);
+    font-weight: 600;
+  }
+}
+
+/* File listing style */
+.file-listing {
+  margin-bottom: 1.5rem;
+
+  .file-entry {
+    display: flex;
+    gap: 1rem;
+    padding: 0.4rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    align-items: baseline;
+    flex-wrap: wrap;
+
+    &:hover {
+      background: var(--bg-secondary);
+    }
+
+    &.expanded {
+      background: var(--bg-secondary);
+      border-left: 2px solid var(--green);
+      margin-bottom: 0;
+      border-radius: 4px 4px 0 0;
+    }
+  }
+
+  .file-perms {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    flex-shrink: 0;
+  }
+
+  .file-user {
+    color: var(--cyan);
+    font-size: var(--font-size-sm);
+    flex-shrink: 0;
+  }
+
+  .file-date {
+    color: var(--amber);
+    font-size: var(--font-size-sm);
+    flex-shrink: 0;
+  }
+
+  .file-name {
+    color: var(--green-bright);
+    font-weight: 600;
+  }
+
+  .file-content {
+    background: var(--bg-tertiary);
+    border-left: 2px solid var(--green);
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0 0 4px 4px;
+    display: none;
+
+    &.show {
+      display: block;
+    }
+
+    p {
+      color: var(--text-secondary);
+    }
+  }
+}
+
+/* Log-style entries (for news) */
+.log-entry {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  p {
+    margin: 0;
+    display: contents;
+  }
+
+  .log-timestamp {
+    color: var(--amber);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: var(--font-size-sm);
+  }
+
+  .log-message {
+    color: var(--text-secondary);
+    flex: 1;
+
+    strong, b {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    a {
+      color: var(--blue);
+    }
+  }
+}
+
+/* Skill/progress bars */
+.skill-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+
+  .skill-name {
+    color: var(--text-secondary);
+    width: 120px;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+
+  .skill-track {
+    flex: 1;
+    height: 14px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    font-size: 0;
+    display: flex;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: var(--green);
+    transition: width 0.8s ease;
+  }
+
+  .skill-pct {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    min-width: 35px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+}
+
+/* Tag / badge */
+.tag {
+  display: inline-block;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--green);
+  padding: 0.1rem 0.5rem;
+  border-radius: 3px;
+  font-size: var(--font-size-sm);
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+
+  &.tag-blue { color: var(--blue); border-color: rgba(88, 166, 255, 0.3); }
+  &.tag-amber { color: var(--amber); border-color: rgba(227, 179, 65, 0.3); }
+  &.tag-purple { color: var(--purple); border-color: rgba(188, 140, 255, 0.3); }
+  &.tag-red { color: var(--red); border-color: rgba(248, 81, 73, 0.3); }
+}
+
+/* CRT scanline overlay — subtle */
+.crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03) 0px,
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}

@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<div class="terminal">
+  <div class="terminal-header">
+    <div class="terminal-dots">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="terminal-title">{{ page.title | default: "~" }}</div>
+  </div>
+  <div class="terminal-body page-content">
+    {{ content }}
+  </div>
+</div>
